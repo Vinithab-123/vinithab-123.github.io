@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vinitha Buchakkagari | Data Analyst</title>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --navy: #185FA5;
+      --navy-light: #E6F1FB;
+      --navy-mid: #B5D4F4;
+      --text-primary: #111111;
+      --text-secondary: #555555;
+      --text-muted: #888888;
+      --bg: #ffffff;
+      --bg-secondary: #f7f7f5;
+      --border: rgba(0,0,0,0.1);
+      --border-hover: rgba(0,0,0,0.25);
+      --radius-md: 8px;
+      --radius-lg: 12px;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --text-primary: #f0f0ef;
+        --text-secondary: #aaaaaa;
+        --text-muted: #777777;
+        --bg: #1a1a18;
+        --bg-secondary: #222220;
+        --border: rgba(255,255,255,0.1);
+        --border-hover: rgba(255,255,255,0.25);
+        --navy-light: #0c2a45;
+        --navy-mid: #1a4a78;
+      }
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text-primary); line-height: 1.6; }
+    a { text-decoration: none; color: inherit; }
+
+    /* NAV */
+    nav { display: flex; justify-content: space-between; align-items: center; padding: 18px 48px; border-bottom: 0.5px solid var(--border); background: var(--bg); position: sticky; top: 0; z-index: 100; backdrop-filter: blur(8px); }
+    .nav-logo { font-size: 16px; font-weight: 600; color: var(--text-primary); }
+    .nav-links { display: flex; gap: 32px; }
+    .nav-links a { font-size: 13px; color: var(--text-secondary); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--navy); }
+    .nav-resume { font-size: 13px; background: var(--navy); color: #fff; padding: 8px 18px; border-radius: var(--radius-md); transition: opacity 0.2s; }
+    .nav-resume:hover { opacity: 0.88; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { width: 22px; height: 1.5px; background: var(--text-primary); }
+
+    /* HERO */
+    .hero { padding: 88px 48px 72px; border-bottom: 0.5px solid var(--border); max-width: 860px; }
+    .hero-tag { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; background: var(--navy-light); color: var(--navy); padding: 5px 14px; border-radius: 20px; margin-bottom: 24px; font-weight: 500; }
+    .hero-dot { width: 7px; height: 7px; border-radius: 50%; background: #22c55e; }
+    .hero h1 { font-size: 42px; font-weight: 600; color: var(--text-primary); line-height: 1.15; margin-bottom: 16px; }
+    .hero h1 span { color: var(--navy); }
+    .hero-sub { font-size: 16px; color: var(--text-secondary); line-height: 1.75; max-width: 580px; margin-bottom: 32px; }
+    .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 48px; }
+    .btn-primary { background: var(--navy); color: #fff; font-size: 14px; padding: 11px 24px; border-radius: var(--radius-md); border: none; cursor: pointer; transition: opacity 0.2s; }
+    .btn-primary:hover { opacity: 0.88; }
+    .btn-outline { background: transparent; color: var(--text-primary); font-size: 14px; padding: 11px 24px; border-radius: var(--radius-md); border: 0.5px solid var(--border-hover); cursor: pointer; transition: background 0.2s; }
+    .btn-outline:hover { background: var(--bg-secondary); }
+    .hero-stats { display: flex; gap: 40px; flex-wrap: wrap; }
+    .stat-num { font-size: 26px; font-weight: 600; color: var(--text-primary); }
+    .stat-label { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+
+    /* SECTIONS */
+    .section { padding: 64px 48px; border-bottom: 0.5px solid var(--border); }
+    .section-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 32px; font-weight: 500; }
+    .section-title { font-size: 22px; font-weight: 600; color: var(--text-primary); margin-bottom: 8px; }
+
+    /* ABOUT */
+    .about-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 48px; align-items: start; }
+    .about-text { font-size: 15px; color: var(--text-secondary); line-height: 1.8; }
+    .about-highlights { display: flex; flex-direction: column; gap: 16px; }
+    .hl-item { display: flex; align-items: flex-start; gap: 14px; }
+    .hl-icon { width: 36px; height: 36px; border-radius: var(--radius-md); background: var(--navy-light); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .hl-icon svg { width: 16px; height: 16px; stroke: var(--navy); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+    .hl-strong { font-size: 13px; font-weight: 600; color: var(--text-primary); display: block; margin-bottom: 2px; }
+    .hl-sub { font-size: 13px; color: var(--text-secondary); }
+
+    /* PROJECTS */
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
+    .project-card { background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--radius-lg); padding: 22px; transition: border-color 0.2s, transform 0.2s; display: flex; flex-direction: column; }
+    .project-card:hover { border-color: var(--navy-mid); transform: translateY(-2px); }
+    .tag-row { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
+    .tag { font-size: 11px; padding: 3px 9px; border-radius: 4px; font-weight: 500; }
+    .tag-bi  { background: #E6F1FB; color: #0C447C; }
+    .tag-py  { background: #EAF3DE; color: #27500A; }
+    .tag-sql { background: #FAEEDA; color: #633806; }
+    .tag-ml  { background: #EEEDFE; color: #3C3489; }
+    .tag-xl  { background: #FAECE7; color: #712B13; }
+    .tag-nlp { background: #FBEAF0; color: #72243E; }
+    .project-title { font-size: 14px; font-weight: 600; color: var(--text-primary); margin-bottom: 8px; line-height: 1.4; }
+    .project-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.65; margin-bottom: 14px; flex: 1; }
+    .project-impact { font-size: 12px; color: var(--navy); border-left: 2px solid var(--navy-mid); padding-left: 10px; margin-bottom: 16px; line-height: 1.6; }
+    .project-footer { display: flex; justify-content: space-between; align-items: center; }
+    .project-date { font-size: 11px; color: var(--text-muted); }
+    .wip-badge { font-size: 11px; background: #FAEEDA; color: #633806; padding: 3px 9px; border-radius: 4px; font-weight: 500; }
+
+    /* SKILLS */
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+    .skill-card { background: var(--bg-secondary); border-radius: var(--radius-md); padding: 18px 20px; }
+    .skill-cat { font-size: 12px; font-weight: 600; color: var(--text-primary); margin-bottom: 8px; }
+    .skill-items { font-size: 13px; color: var(--text-secondary); line-height: 1.75; }
+
+    /* EXPERIENCE */
+    .exp-list { display: flex; flex-direction: column; }
+    .exp-item { display: flex; gap: 20px; }
+    .exp-dot-col { display: flex; flex-direction: column; align-items: center; padding-top: 5px; }
+    .exp-dot { width: 11px; height: 11px; border-radius: 50%; background: var(--navy); flex-shrink: 0; }
+    .exp-line { width: 1px; background: var(--border); flex: 1; margin-top: 8px; min-height: 24px; }
+    .exp-content { flex: 1; padding-bottom: 32px; }
+    .exp-title { font-size: 15px; font-weight: 600; color: var(--text-primary); }
+    .exp-company { font-size: 13px; color: var(--navy); margin: 3px 0 5px; }
+    .exp-date { font-size: 12px; color: var(--text-muted); margin-bottom: 10px; }
+    .exp-points { font-size: 13px; color: var(--text-secondary); line-height: 1.75; }
+
+    /* PUBLICATION */
+    .pub-card { background: var(--bg-secondary); border-radius: var(--radius-lg); padding: 24px 28px; border-left: 3px solid var(--navy); }
+    .pub-badge { display: inline-block; font-size: 11px; background: var(--navy-light); color: var(--navy); padding: 3px 10px; border-radius: 4px; margin-bottom: 14px; font-weight: 500; }
+    .pub-title { font-size: 15px; font-weight: 600; color: var(--text-primary); margin-bottom: 8px; line-height: 1.5; }
+    .pub-venue { font-size: 13px; color: var(--navy); margin-bottom: 12px; }
+    .pub-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.7; }
+    .pub-result { display: inline-flex; gap: 16px; margin-top: 14px; flex-wrap: wrap; }
+    .pub-metric { font-size: 13px; font-weight: 600; color: var(--text-primary); }
+    .pub-metric span { font-weight: 400; color: var(--text-secondary); }
+
+    /* CERTS */
+    .certs { display: flex; flex-wrap: wrap; gap: 10px; }
+    .cert-pill { font-size: 13px; padding: 8px 16px; border: 0.5px solid var(--border); border-radius: 20px; color: var(--text-secondary); background: var(--bg); }
+    .cert-pill.pursuing { border-style: dashed; }
+
+    /* CONTACT */
+    .contact-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
+    .contact-item { background: var(--bg-secondary); border-radius: var(--radius-md); padding: 18px 20px; }
+    .contact-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 6px; font-weight: 500; }
+    .contact-val { font-size: 14px; color: var(--text-primary); font-weight: 500; }
+    .contact-val a { color: var(--navy); }
+    .contact-val a:hover { text-decoration: underline; }
+
+    /* FOOTER */
+    footer { padding: 32px 48px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .footer-text { font-size: 13px; color: var(--text-muted); }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav { padding: 14px 24px; }
+      .nav-links, .nav-resume { display: none; }
+      .hamburger { display: flex; }
+      .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 56px; left: 0; right: 0; background: var(--bg); border-bottom: 0.5px solid var(--border); padding: 20px 24px; gap: 20px; }
+      .hero { padding: 56px 24px 48px; }
+      .hero h1 { font-size: 30px; }
+      .section { padding: 48px 24px; }
+      .about-grid { grid-template-columns: 1fr; gap: 28px; }
+      .hero-stats { gap: 24px; }
+      footer { padding: 24px; flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<nav id="navbar">
+  <div class="nav-logo">Vinitha B.</div>
+  <div class="nav-links" id="nav-links">
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
+    <a href="#experience">Experience</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <a class="nav-resume" href="Vinitha_DataAnalyst_Resume_Updated.docx" download>Download Resume</a>
+  <div class="hamburger" onclick="document.getElementById('nav-links').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-tag"><div class="hero-dot"></div> Open to work · Data Analyst</div>
+  <h1>Hi, I'm <span>Vinitha<br>Buchakkagari</span></h1>
+  <p class="hero-sub">Data Analyst passionate about turning raw data into business decisions. I work with Python, SQL, Power BI, and Tableau to build dashboards, ML pipelines, and actionable insights — across energy, e-commerce, food-tech, and more.</p>
+  <div class="hero-btns">
+    <a class="btn-primary" href="Vinitha_DataAnalyst_Resume_Updated.docx" download>Download Resume</a>
+    <a class="btn-outline" href="#projects">View Projects</a>
+  </div>
+  <div class="hero-stats">
+    <div><div class="stat-num">7</div><div class="stat-label">Projects</div></div>
+    <div><div class="stat-num">2</div><div class="stat-label">Internships</div></div>
+    <div><div class="stat-num">1</div><div class="stat-label">Publication</div></div>
+    <div><div class="stat-num">22K+</div><div class="stat-label">Records Analysed</div></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="section-label">About me</div>
+  <div class="about-grid">
+    <p class="about-text">I'm a final-year Computer Science student at PES University, Bangalore, with a current semester SGPA of 9.75. I've built end-to-end data projects across energy analytics, e-commerce, food-tech, and ML research — and published a paper at an international conference in Thailand (ICTIS 2026).<br><br>I love working at the intersection of data and business — translating messy datasets into clean dashboards and clear decisions. I'm currently looking for Data Analyst roles where I can bring this work to real problems at scale.</p>
+    <div class="about-highlights">
+      <div class="hl-item">
+        <div class="hl-icon">
+          <svg viewBox="0 0 16 16"><rect x="2" y="3" width="12" height="10" rx="1"/><path d="M5 7h6M5 10h4"/></svg>
+        </div>
+        <div><span class="hl-strong">Published Researcher</span><span class="hl-sub">ICTIS 2026 International Conference, Bangkok, Thailand</span></div>
+      </div>
+      <div class="hl-item">
+        <div class="hl-icon">
+          <svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="5"/><path d="M8 5v3l2 2"/></svg>
+        </div>
+        <div><span class="hl-strong">2 Internships Completed</span><span class="hl-sub">Labmentix (AI/ML) &amp; Teachnook (Data Science)</span></div>
+      </div>
+      <div class="hl-item">
+        <div class="hl-icon">
+          <svg viewBox="0 0 16 16"><path d="M2 12L8 4l6 8H2z"/></svg>
+        </div>
+        <div><span class="hl-strong">Real-World Datasets</span><span class="hl-sub">Chicago Open Data, Swiggy, Blinkit, Tesla, Netflix</span></div>
+      </div>
+      <div class="hl-item">
+        <div class="hl-icon">
+          <svg viewBox="0 0 16 16"><rect x="2" y="2" width="5" height="5" rx="1"/><rect x="9" y="2" width="5" height="5" rx="1"/><rect x="2" y="9" width="5" height="5" rx="1"/><rect x="9" y="9" width="5" height="5" rx="1"/></svg>
+        </div>
+        <div><span class="hl-strong">CGPA 7.30 · Semester SGPA 9.75</span><span class="hl-sub">PES University, Bangalore · 2022–Present</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="section" id="projects">
+  <div class="section-label">Projects</div>
+  <div class="projects-grid">
+
+    <div class="project-card">
+      <div class="tag-row"><span class="tag tag-bi">Power BI</span><span class="tag tag-sql">SQL</span><span class="tag tag-sql">Power Query</span></div>
+      <div class="project-title">Swiggy Data Analysis Dashboard</div>
+      <div class="project-desc">Analysed 100K users and 5.2M menu rows across 6 relational tables. Built an interactive Power BI dashboard with user segmentation, order trends, and city-level revenue insights.</div>
+      <div class="project-impact">Top 10% of customers drive 80% of sales · Tirupati highest order city at ₹43M</div>
+      <div class="project-footer"><span class="project-date">2026</span><span class="wip-badge">In Progress</span></div>
+    </div>
+
+    <div class="project-card">
+      <div class="tag-row"><span class="tag tag-py">Python</span><span class="tag tag-bi">Power BI</span><span class="tag tag-sql">SQL</span></div>
+      <div class="project-title">Chicago Building Energy Performance Analytics</div>
+      <div class="project-desc">Cleaned 22,700+ real building energy records from Chicago Open Data Portal (2014–2023). Engineered sustainability KPIs and built a regression-based forecast model.</div>
+      <div class="project-impact">Forecast: median Site EUI to decline to 69.94 kBtu/sq ft by 2026 · 6-visual Power BI dashboard</div>
+      <div class="project-footer"><span class="project-date">2026</span></div>
+    </div>
+
+    <div class="project-card">
+      <div class="tag-row"><span class="tag tag-xl">Excel</span><span class="tag tag-bi">Power BI</span></div>
+      <div class="project-title">Blinkit Sales Analytics Dashboard</div>
+      <div class="project-desc">Interactive dashboard analysing grocery sales across outlet size, location tier, and product categories using Excel Pivot Tables and a KPI-driven reporting framework.</div>
+      <div class="project-impact">Insights supporting inventory optimisation and data-driven decision-making</div>
+      <div class="project-footer"><span class="project-date">2025</span></div>
+    </div>
+
+    <div class="project-card">
+      <div class="tag-row"><span class="tag tag-py">Python</span><span class="tag tag-sql">SQL</span><span class="tag tag-bi">Tableau</span></div>
+      <div class="project-title">Shopper Spectrum — Customer Segmentation</div>
+      <div class="project-desc">End-to-end Python + SQL pipeline with RFM metrics, cart abandonment patterns, and session behaviour analysis for an e-commerce platform with Tableau KPI dashboards.</div>
+      <div class="project-impact">Identified high-value vs at-risk cohorts enabling targeted re-engagement strategy</div>
+      <div class="project-footer"><span class="project-date">Jan 2026</span></div>
+    </div>
+
+    <div class="project-card">
+      <div class="tag-row"><span class="tag tag-py">Python</span><span class="tag tag-ml">ARIMA/SARIMA</span></div>
+      <div class="project-title">Tesla Stock Price Prediction</div>
+      <div class="project-desc">Applied ARIMA/SARIMA models for stock price forecasting with stationarity testing, differencing, and evaluation via RMSE/MAE on real financial data.</div>
+      <div class="project-impact">Advanced time series forecasting with statistical validation</div>
+      <div class="project-footer"><span class="project-date">Jan 2026</span></div>
+    </div>
+
+    <div class="project-card">
+      <div class="tag-row"><span class="tag tag-ml">Graph Neural Networks</span><span class="tag tag-py">Python</span></div>
+      <div class="project-title">Brain Disorder Classification — Capstone</div>
+      <div class="project-desc">Graph-based Diffusion model (GDDPM) for ADHD fMRI classification using synthetic data augmentation. Research published at ICTIS 2026, Bangkok.</div>
+      <div class="project-impact">+8.1% accuracy improvement · +6.5% F1-score · Published ICTIS 2026</div>
+      <div class="project-footer"><span class="project-date">Aug 2025–Present</span></div>
+    </div>
+
+    <div class="project-card">
+      <div class="tag-row"><span class="tag tag-nlp">NLP</span><span class="tag tag-ml">Unsupervised ML</span><span class="tag tag-py">Python</span></div>
+      <div class="project-title">Netflix Content Taxonomy &amp; Clustering</div>
+      <div class="project-desc">Unsupervised ML pipeline to segment content by semantic similarity. Created structured content taxonomy for stakeholder-ready reporting and recommendations.</div>
+      <div class="project-impact">Stakeholder-ready content recommendation taxonomy</div>
+      <div class="project-footer"><span class="project-date">Oct 2025</span></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="section" id="skills">
+  <div class="section-label">Skills</div>
+  <div class="skills-grid">
+    <div class="skill-card"><div class="skill-cat">BI Tools</div><div class="skill-items">Power BI · DAX · Power Query<br>Tableau · KPI Design</div></div>
+    <div class="skill-card"><div class="skill-cat">Languages</div><div class="skill-items">Python · SQL<br>Pandas · NumPy · Scikit-learn</div></div>
+    <div class="skill-card"><div class="skill-cat">Excel / Sheets</div><div class="skill-items">Pivot Tables · VLOOKUP<br>Data Cleaning · Reporting</div></div>
+    <div class="skill-card"><div class="skill-cat">ML / Analytics</div><div class="skill-items">Regression · Classification<br>Clustering · ARIMA/SARIMA · PCA</div></div>
+    <div class="skill-card"><div class="skill-cat">Energy Analytics</div><div class="skill-items">Site EUI · GHG Intensity<br>ENERGY STAR Benchmarking</div></div>
+    <div class="skill-card"><div class="skill-cat">Domain Knowledge</div><div class="skill-items">E-commerce · Food-tech<br>Building Energy · Marketing</div></div>
+    <div class="skill-card"><div class="skill-cat">Marketing Data</div><div class="skill-items">Google Analytics (GA4)<br>CTR · CPC · ROI · CAC</div></div>
+    <div class="skill-card"><div class="skill-cat">Soft Skills</div><div class="skill-items">Stakeholder Communication<br>A/B Testing · Agile · Documentation</div></div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="section" id="experience">
+  <div class="section-label">Experience</div>
+  <div class="exp-list">
+    <div class="exp-item">
+      <div class="exp-dot-col"><div class="exp-dot"></div><div class="exp-line"></div></div>
+      <div class="exp-content">
+        <div class="exp-title">Data Scientist Intern</div>
+        <div class="exp-company">Labmentix</div>
+        <div class="exp-date">Oct 2025 – Apr 2026</div>
+        <div class="exp-points">Delivered end-to-end ML pipelines on real-world datasets across the full SDLC. Performed data preprocessing, feature engineering, model development and evaluation. Contributed to stakeholder reporting and documentation in sprint-based Agile cycles.</div>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-dot-col"><div class="exp-dot"></div></div>
+      <div class="exp-content">
+        <div class="exp-title">Data Science Intern</div>
+        <div class="exp-company">Teachnook</div>
+        <div class="exp-date">Jun 2024 – Aug 2024</div>
+        <div class="exp-points">Built and optimised ML models (SVM, Regression, PCA, K-Means) for power consumption analysis — achieving 97% prediction accuracy. Prepared analysis reports and visualisations to communicate findings to non-technical stakeholders.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PUBLICATION -->
+<section class="section" id="publication">
+  <div class="section-label">Publication</div>
+  <div class="pub-card">
+    <div class="pub-badge">Peer Reviewed · ICTIS 2026</div>
+    <div class="pub-title">Brain Disorder Classification using Graph-based Diffusion Probabilistic Model (GDDPM) for ADHD fMRI Data</div>
+    <div class="pub-venue">ICTIS 2026 — International Conference on ICT for Intelligent Systems · Bangkok, Thailand</div>
+    <div class="pub-desc">Proposed a Graph-based Diffusion model for ADHD classification using fMRI data. Implemented synthetic data augmentation via the diffusion pipeline to improve model generalization.</div>
+    <div class="pub-result">
+      <div class="pub-metric">+8.1% <span>Accuracy Improvement</span></div>
+      <div class="pub-metric">+6.5% <span>F1-Score Improvement</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section class="section" id="certifications">
+  <div class="section-label">Certifications</div>
+  <div class="certs">
+    <span class="cert-pill">Data Science — Teachnook</span>
+    <span class="cert-pill">Oracle Foundations Certified</span>
+    <span class="cert-pill">Java Basics — HackerRank</span>
+    <span class="cert-pill pursuing">Microsoft Learn — Power BI (Pursuing)</span>
+    <span class="cert-pill pursuing">Google Data Analytics (Pursuing)</span>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section" id="contact">
+  <div class="section-label">Contact</div>
+  <div class="contact-grid">
+    <div class="contact-item">
+      <div class="contact-label">Email</div>
+      <div class="contact-val"><a href="mailto:vinithabuchakkagari@gmail.com">vinithabuchakkagari@gmail.com</a></div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-label">Phone</div>
+      <div class="contact-val">+91 85550 83979</div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-label">Location</div>
+      <div class="contact-val">Bangalore, India</div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-label">LinkedIn</div>
+      <div class="contact-val"><a href="https://linkedin.com/in/vinitha-buchakkagari25b556389" target="_blank">linkedin.com/in/vinitha-buchakkagari</a></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-text">© 2026 Vinitha Buchakkagari · Data Analyst · Bangalore, India</span>
+  <span class="footer-text">Built with HTML · Hosted on GitHub Pages</span>
+</footer>
+
+</body>
+</html>
